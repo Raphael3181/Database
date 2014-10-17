@@ -1,0 +1,24 @@
+@(contact: Contact, contactForm: Form[Contact])
+@import helper._
+@main("Редактирование") {
+
+    <h2 align=center>Редактирование</h2>
+
+    @form(routes.Application.editContact()) {
+        <table align="center">
+		  <tr>
+           <input type="hidden" name="id" value="@contact.id" />
+	       <td>Имя:</td><td><input type="text" name="name" value="@contact.name" /></td>
+		  </tr> 
+		  <tr>
+		   <td>Домашний телефон:</td><td><input type="text" name="homephone" value="@contact.homephone"/></td>
+		  </tr>
+		  <tr>		  
+	       <td>Мобильный Телефон:</td><td><input type="text" name="mobilephone" value="@contact.mobilephone"/></td>
+	      </tr> 
+		  <tr>
+	       <td><input type="submit" value="Изменить"></td>
+		  </tr>
+        </table>
+    } 
+}

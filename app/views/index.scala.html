@@ -1,0 +1,61 @@
+@(contacts: List[Contact], contactForm: Form[Contact])
+
+@import helper._
+
+@main("DataBase Numbers") {
+    
+    <h1 align=center>@contacts.size() Контакт(ов)(а)</h1>
+    
+    <ul align=center>
+        
+		@for(contact <- contacts) {
+		
+                <table align="center">
+				<tr align="left">
+			
+				 <td>@contact.name</td>
+				</tr>
+				<tr align="left">
+				 <td></td>
+				 <td>@contact.homephone</td>
+				</tr>
+                <tr align="left">
+				 <td></td>
+				 <td>@contact.mobilephone</td>
+				</tr>
+                <tr align="left"> 
+				 <td></td>
+				@form(routes.Application.deleteContact(contact.id)) {
+                   <td><input type="submit" value="Удалить"></td>
+				</tr>
+				}
+				<tr align="left">
+				 <td></td>
+				@form(routes.Application.openContact(contact.id)) {
+                   <td><input type="submit" value="Изменить"></td>
+				</tr>	
+				}
+				</table>
+             }
+    </ul>
+    
+    <h2 align=center>Добавьте новый Контакт</h2>
+    
+    @form(routes.Application.newContact()) {
+     <table align="center">
+       <tr>  
+         <td>Имя:</td> <td> <input type="text" name="name"/></td>
+	   </tr>
+	   <tr>
+		 <td>Домашний телефон:</td><td><input type="text" name="homephone"/></td>
+       </tr>
+	   <tr>
+         <td>Мобильный Телефон:</td><td><input type="text" name="mobilephone"/></td>
+		</tr> 
+        <tr>
+		   <td><input type="submit" value="Ввести"></td>
+		</tr>
+      </table> 
+    }
+    
+}
